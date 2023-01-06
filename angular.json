@@ -38,6 +38,8 @@
             ],
             "styles": [
               "node_modules/@valtimo/user-interface/assets/design-tokens.css",
+              "node_modules/@valtimo/components/assets/css/carbon.scss",
+              "node_modules/@valtimo/components/assets/css/carbon-beagle-compatibility.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
               "node_modules/@mdi/font/css/materialdesignicons.css",
