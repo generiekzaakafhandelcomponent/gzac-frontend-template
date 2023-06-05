@@ -105,7 +105,8 @@ export const environment: ValtimoConfig = {
     },
   },
   featureToggles: {
-    showUserNameInTopBar: true
+    showUserNameInTopBar: true,
+    caseListColumn: true
   }
 };
 
