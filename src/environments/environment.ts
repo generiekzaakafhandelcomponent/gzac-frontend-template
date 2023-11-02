@@ -30,13 +30,14 @@ export const environment: ValtimoConfig = {
           {link: ['/plugins'], title: 'Plugins', sequence: 7},
           {link: ['/form-links'], title: 'Form links', sequence: 8},
           {link: ['/process-links'], title: 'Form links Plugin', sequence: 9},
-          {title: 'A&E', textClass: 'text-dark font-weight-bold c-default', sequence: 10},
+          {link: ['/dashboard-management'], title: 'Dashboard', sequence: 10},
+          {title: 'A&E', textClass: 'text-dark font-weight-bold c-default', sequence: 11},
           {link: ['/contexts'], title: 'Contexts', sequence: 12},
-          {link: ['/users'], title: 'Users', sequence: 12},
-          {link: ['/entitlements'], title: 'Entitlements', sequence: 13},
-          {title: 'Other', textClass: 'text-dark font-weight-bold c-default', sequence: 14},
-          {link: ['/process-migration'], title: 'Process migration', sequence: 15},
-          {link: ['/choice-fields'], title: 'Choice fields', sequence: 16},
+          {link: ['/users'], title: 'Users', sequence: 13},
+          {link: ['/entitlements'], title: 'Entitlements', sequence: 14},
+          {title: 'Other', textClass: 'text-dark font-weight-bold c-default', sequence: 15},
+          {link: ['/process-migration'], title: 'Process migration', sequence: 16},
+          {link: ['/choice-fields'], title: 'Choice fields', sequence: 17},
         ]
       },
       {
@@ -105,8 +106,13 @@ export const environment: ValtimoConfig = {
     },
   },
   featureToggles: {
+    disableFormFlow: false,
     showUserNameInTopBar: true,
-    caseListColumn: true
+    enableObjectManagement: true,
+    caseSearchFields: true,
+    caseListColumn: true,
+    sortFilesByDate: true,
+    returnToLastUrlAfterTokenExpiration: true,
   }
 };
 

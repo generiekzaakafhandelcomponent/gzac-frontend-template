@@ -19,7 +19,7 @@ import {ChoicefieldModule} from '@valtimo/choicefield';
 import {
   DefaultTabs,
   DossierDetailTabAuditComponent,
-  DossierDetailTabDocumentsComponent,
+  DossierDetailTabDocumentsComponent, DossierDetailTabNotesComponent,
   DossierDetailTabProgressComponent,
   DossierDetailTabSummaryComponent,
   DossierModule,
@@ -28,7 +28,11 @@ import {ProcessModule} from '@valtimo/process';
 import {ViewConfiguratorModule} from '@valtimo/view-configurator';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ContextModule} from '@valtimo/context';
-import {DashboardModule} from '@valtimo/dashboard';
+import {
+  BigNumberModule,
+  CaseCountDataSourceModule,
+  DashboardModule,
+} from '@valtimo/dashboard';
 import {DocumentModule} from '@valtimo/document';
 import {AccountModule} from '@valtimo/account';
 import {UserManagementModule} from '@valtimo/user-management';
@@ -72,13 +76,15 @@ import {
   CatalogiApiPluginModule
 
 } from '@valtimo/plugin';
+import {DashboardManagementModule} from '@valtimo/dashboard-management';
 
 export function tabsFactory() {
   return new Map<string, object>([
     [DefaultTabs.summary, DossierDetailTabSummaryComponent],
     [DefaultTabs.progress, DossierDetailTabProgressComponent],
     [DefaultTabs.audit, DossierDetailTabAuditComponent],
-    [DefaultTabs.documents, DossierDetailTabDocumentsComponent]
+    [DefaultTabs.documents, DossierDetailTabDocumentsComponent],
+    [DefaultTabs.notes, DossierDetailTabNotesComponent],
   ]);
 }
 
@@ -137,6 +143,10 @@ export function tabsFactory() {
     ObjecttypenApiPluginModule,
     ObjectTokenAuthenticationPluginModule,
     CatalogiApiPluginModule,
+    DashboardModule,
+    DashboardManagementModule,
+    BigNumberModule,
+    CaseCountDataSourceModule,
     HttpClientModule, TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
