@@ -77,6 +77,8 @@ import {
 
 } from '@valtimo/plugin';
 import {DashboardManagementModule} from '@valtimo/dashboard-management';
+import {ObjectManagementModule} from '@valtimo/object-management';
+import {ObjectModule} from '@valtimo/object';
 
 export function tabsFactory() {
   return new Map<string, object>([
@@ -147,6 +149,8 @@ export function tabsFactory() {
     DashboardManagementModule,
     BigNumberModule,
     CaseCountDataSourceModule,
+    ObjectModule,
+    ObjectManagementModule,
     HttpClientModule, TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

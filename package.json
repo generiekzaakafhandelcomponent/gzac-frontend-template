@@ -51,6 +51,8 @@
     "@valtimo/management": "10.7.0",
     "@valtimo/migration": "10.7.0",
     "@valtimo/milestone": "10.7.0",
+    "@valtimo/object": "10.7.0",
+    "@valtimo/object-management": "10.7.0",
     "@valtimo/open-zaak": "10.7.0",
     "@valtimo/plugin": "10.7.0",
     "@valtimo/plugin-management": "10.7.0",
