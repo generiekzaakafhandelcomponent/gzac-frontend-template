@@ -122,6 +122,7 @@ export const environment: ValtimoConfig = {
     caseListColumn: true,
     sortFilesByDate: true,
     returnToLastUrlAfterTokenExpiration: true,
+    enableTabManagement: true
   }
 };
 
