@@ -116,13 +116,16 @@ export const environment: ValtimoConfig = {
   },
   featureToggles: {
     disableFormFlow: false,
+    enableHackathonCasesPage: true,
     showUserNameInTopBar: true,
-    enableObjectManagement: true,
-    caseSearchFields: true,
+    experimentalDmnEditing: true,
     caseListColumn: true,
+    largeLogoMargin: true,
     sortFilesByDate: true,
+    disableCaseCount: false,
+    enableObjectManagement: true,
     returnToLastUrlAfterTokenExpiration: true,
-    enableTabManagement: true
+    enableTabManagement: true,
   }
 };
 
