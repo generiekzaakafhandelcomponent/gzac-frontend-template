@@ -83,7 +83,7 @@
     "@angular/compiler-cli": "^16.2.12",
     "@angular/language-service": "^16.2.12",
     "@types/jasmine": "4.3.5",
-    "@types/jasminewd2": "2.0.10",
+    "@types/jasminewd2": "2.0.13",
     "@types/node": "20.5.0",
     "codelyzer": "6.0.2",
     "deepmerge-ts": "5.1.0",
