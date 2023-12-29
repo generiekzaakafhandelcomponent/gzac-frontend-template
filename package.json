@@ -63,7 +63,7 @@
     "@valtimo/view-configurator": "11.1.0",
     "@webcomponents/custom-elements": "1.6.0",
     "bpmn-js-properties-panel": "0.46.0",
-    "core-js": "3.32.0",
+    "core-js": "3.35.0",
     "dmn-js": "12.3.0",
     "dropzone": "6.0.0-beta.2",
     "flatpickr": "4.6.13",
