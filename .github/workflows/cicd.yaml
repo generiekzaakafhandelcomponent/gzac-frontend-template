@@ -24,7 +24,7 @@ jobs:
       tagToDeploy: ${{ steps.prep.outputs.image_tag }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js version
         uses: actions/setup-node@v2
@@ -58,7 +58,7 @@ jobs:
     needs: [build]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Download dist artifact
         uses: actions/download-artifact@v2
