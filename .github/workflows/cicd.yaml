@@ -48,7 +48,7 @@ jobs:
         run: mkdir build | mv deployment/ conf/ build/
 
       - name: Archive dist folder
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: gzac-frontend-dist
           path: build/
