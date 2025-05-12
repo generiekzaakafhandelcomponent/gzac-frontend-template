@@ -1,4 +1,4 @@
-FROM nginxinc/nginx-unprivileged:1.27-alpine
+FROM nginxinc/nginx-unprivileged:1.28-alpine
 
 COPY --chown=1000:1000 ./deployment/dist /usr/share/nginx/html
 COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
