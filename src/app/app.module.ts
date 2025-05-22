@@ -10,7 +10,6 @@ import {environment} from '../environments/environment';
 import {SecurityModule} from '@valtimo/security';
 import {
   BpmnJsDiagramModule,
-  CardModule,
   MenuModule,
   WidgetModule,
   enableCustomFormioComponents,
@@ -53,7 +52,7 @@ import {ProcessLinkModule} from '@valtimo/process-link';
 import {MigrationModule} from '@valtimo/migration';
 import {CaseManagementModule} from '@valtimo/case-management';
 import {BootstrapModule} from '@valtimo/bootstrap';
-import {ConfigModule, ConfigService, MultiTranslateHttpLoaderFactory} from '@valtimo/config';
+import {ConfigModule, ConfigService, MultiTranslateHttpLoaderFactory} from '@valtimo/shared';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {FormFlowManagementModule} from '@valtimo/form-flow-management';
 import {PluginManagementModule} from '@valtimo/plugin-management';
@@ -118,7 +117,6 @@ export function tabsFactory() {
     BrowserModule,
     AppRoutingModule,
     LayoutModule,
-    CardModule,
     WidgetModule,
     BootstrapModule,
     ConfigModule.forRoot(environment),

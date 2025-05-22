@@ -2,7 +2,7 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 import {NgxLoggerLevel} from 'ngx-logger';
-import {ROLE_ADMIN, ROLE_DEVELOPER, ROLE_USER, ValtimoConfig, UploadProvider, IncludeFunction} from '@valtimo/config';
+import {ROLE_ADMIN, ROLE_DEVELOPER, ROLE_USER, ValtimoConfig, UploadProvider, IncludeFunction} from '@valtimo/shared';
 import {authenticationKeycloak} from './auth/keycloak-config';
 import {defaultDefinitionColumns} from './columns';
 import {DARK_MODE_LOGO_BASE_64, LOGO_BASE_64} from './logo';
@@ -17,7 +17,7 @@ export const environment: ValtimoConfig = {
       {roles: [ROLE_USER], link: ['/'], title: 'Dashboard', iconClass: 'icon mdi mdi-view-dashboard', sequence: 0},
       {roles: [ROLE_USER], title: 'Cases', iconClass: 'icon mdi mdi-layers', sequence: 1, children: []},
       {roles: [ROLE_USER], link: ['/tasks'], title: 'Tasks', iconClass: 'icon mdi mdi-check-all', sequence: 2},
-      {roles: [ROLE_ADMIN], title: 'Objects', iconClass: 'icon mdi mdi-archive', sequence: 3, includeFunction: IncludeFunction.ObjectManagementEnabled,},
+      {roles: [ROLE_ADMIN], title: 'Objects', iconClass: 'icon mdi mdi-archive', sequence: 3, includeFunction: IncludeFunction.ObjectManagementEnabled},
       {roles: [ROLE_USER], link: ['/analysis'], title: 'Analysis', iconClass: 'icon mdi mdi-chart-bar', sequence: 4},
       {
         roles: [ROLE_ADMIN], title: 'Admin', iconClass: 'icon mdi mdi-tune', sequence: 5, children: [
@@ -26,11 +26,10 @@ export const environment: ValtimoConfig = {
           {link: ['/form-management'], title: 'Forms', sequence: 3},
           {link: ['/form-flow-management'], title: 'Form flows', sequence: 4},
           {link: ['/decision-tables'], title: 'Decision tables', sequence: 5},
-          {link: ['/cases-management'], title: 'Cases', sequence: 6},
+          {link: ['/case-management'], title: 'Cases', sequence: 6},
           {link: ['/task-management'], title: 'Tasks', sequence: 7},
           {link: ['/object-management'], title: 'Objects', sequence: 8},
           {link: ['/plugins'], title: 'Plugins', sequence: 9},
-          {link: ['/process-links'], title: 'Process links', sequence: 10},
           {link: ['/dashboard-management'], title: 'Dashboard', sequence: 11},
           {link: ['/access-control'], title: 'Access Control', sequence: 12},
           {link: ['/translation-management'], title: 'Translations', sequence: 13},
