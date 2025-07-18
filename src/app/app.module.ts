@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {Injector, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {HttpBackend, HttpClientModule} from '@angular/common/http';
+import { HttpBackend, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LayoutModule, TranslationManagementModule} from '@valtimo/layout';
@@ -99,100 +99,93 @@ export function tabsFactory() {
   ]);
 }
 
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    HttpClientModule,
-    CommonModule,
-    BrowserModule,
-    AppRoutingModule,
-    LayoutModule,
-    CardModule,
-    WidgetModule,
-    BootstrapModule,
-    ConfigModule.forRoot(environment),
-    LoggerModule.forRoot(environment.logger),
-    environment.authentication.module,
-    SecurityModule,
-    MenuModule,
-    TaskModule,
-    CaseMigrationModule,
-    DossierModule.forRoot(tabsFactory),
-    ProcessModule,
-    BpmnJsDiagramModule,
-    FormsModule,
-    ReactiveFormsModule,
-    DashboardModule,
-    DashboardManagementModule,
-    DocumentModule,
-    AccountModule,
-    ChoiceFieldModule,
-    ResourceModule,
-    FormModule,
-    AnalyseModule,
-    SwaggerModule,
-    FormFlowManagementModule,
-    ProcessManagementModule,
-    DecisionModule,
-    MilestoneModule,
-    FormManagementModule,
-    ProcessLinkModule,
-    MigrationModule,
-    DossierManagementModule,
-    PluginManagementModule,
-    OpenZaakPluginModule,
-    SmartDocumentsPluginModule,
-    BesluitenApiPluginModule,
-    DocumentenApiPluginModule,
-    ZakenApiPluginModule,
-    ObjectenApiPluginModule,
-    ObjecttypenApiPluginModule,
-    ObjectTokenAuthenticationPluginModule,
-    ObjectModule,
-    ObjectManagementModule,
-    CatalogiApiPluginModule,
-    NotificatiesApiPluginModule,
-    OpenNotificatiesPluginModule,
-    PortaaltaakPluginModule,
-    VerzoekPluginModule,
-    BigNumberModule,
-    CaseCountDataSourceModule,
-    AccessControlManagementModule,
-    HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: MultiTranslateHttpLoaderFactory,
-        deps: [HttpBackend, ConfigService]
-      },
-    }),
-    TranslationManagementModule,
-    TaskManagementModule,
-    ZgwModule,
-    LoggingModule
-  ],
-  providers: [{
-    provide: PLUGINS_TOKEN,
-    useValue: [
-      openZaakPluginSpecification,
-      smartDocumentsPluginSpecification,
-      besluitenApiPluginSpecification,
-      documentenApiPluginSpecification,
-      zakenApiPluginSpecification,
-      objectenApiPluginSpecification,
-      objecttypenApiPluginSpecification,
-      objectTokenAuthenticationPluginSpecification,
-      catalogiApiPluginSpecification,
-      notificatiesApiPluginSpecification,
-      openNotificatiesPluginSpecification,
-      portaaltaakPluginSpecification,
-      verzoekPluginSpecification
-    ]
-  }],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent
+    ],
+    bootstrap: [AppComponent], imports: [HttpClientModule,
+        CommonModule,
+        BrowserModule,
+        AppRoutingModule,
+        LayoutModule,
+        CardModule,
+        WidgetModule,
+        BootstrapModule,
+        ConfigModule.forRoot(environment),
+        LoggerModule.forRoot(environment.logger),
+        environment.authentication.module,
+        SecurityModule,
+        MenuModule,
+        TaskModule,
+        CaseMigrationModule,
+        DossierModule.forRoot(tabsFactory),
+        ProcessModule,
+        BpmnJsDiagramModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DashboardModule,
+        DashboardManagementModule,
+        DocumentModule,
+        AccountModule,
+        ChoiceFieldModule,
+        ResourceModule,
+        FormModule,
+        AnalyseModule,
+        SwaggerModule,
+        FormFlowManagementModule,
+        ProcessManagementModule,
+        DecisionModule,
+        MilestoneModule,
+        FormManagementModule,
+        ProcessLinkModule,
+        MigrationModule,
+        DossierManagementModule,
+        PluginManagementModule,
+        OpenZaakPluginModule,
+        SmartDocumentsPluginModule,
+        BesluitenApiPluginModule,
+        DocumentenApiPluginModule,
+        ZakenApiPluginModule,
+        ObjectenApiPluginModule,
+        ObjecttypenApiPluginModule,
+        ObjectTokenAuthenticationPluginModule,
+        ObjectModule,
+        ObjectManagementModule,
+        CatalogiApiPluginModule,
+        NotificatiesApiPluginModule,
+        OpenNotificatiesPluginModule,
+        PortaaltaakPluginModule,
+        VerzoekPluginModule,
+        BigNumberModule,
+        CaseCountDataSourceModule,
+        AccessControlManagementModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: MultiTranslateHttpLoaderFactory,
+                deps: [HttpBackend, ConfigService]
+            },
+        }),
+        TranslationManagementModule,
+        TaskManagementModule,
+        ZgwModule,
+        LoggingModule], providers: [{
+            provide: PLUGINS_TOKEN,
+            useValue: [
+                openZaakPluginSpecification,
+                smartDocumentsPluginSpecification,
+                besluitenApiPluginSpecification,
+                documentenApiPluginSpecification,
+                zakenApiPluginSpecification,
+                objectenApiPluginSpecification,
+                objecttypenApiPluginSpecification,
+                objectTokenAuthenticationPluginSpecification,
+                catalogiApiPluginSpecification,
+                notificatiesApiPluginSpecification,
+                openNotificatiesPluginSpecification,
+                portaaltaakPluginSpecification,
+                verzoekPluginSpecification
+            ]
+        }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {
   constructor(injector: Injector) {
     registerFormioUploadComponent(injector);
