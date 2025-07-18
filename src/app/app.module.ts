@@ -1,4 +1,3 @@
-import { BpmnJsDiagramModule, MenuModule, WidgetModule, enableCustomFormioComponents, registerFormioCurrencyComponent, registerFormioUploadComponent, registerFormioFileSelectorComponent, registerFormioValueResolverSelectorComponent } from '@valtimo/components';
 import {BrowserModule} from '@angular/platform-browser';
 import {Injector, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
