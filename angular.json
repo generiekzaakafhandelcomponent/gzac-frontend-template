@@ -70,7 +70,7 @@
               "node_modules/@valtimo/components/assets/css/formio-carbon.scss"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.js",
+              "node_modules/jquery/dist/jquery.min.js",
               "node_modules/components-jqueryui/jquery-ui.min.js",
               "node_modules/popper.js/dist/umd/popper.js",
               "node_modules/bootstrap/dist/js/bootstrap.js",
@@ -90,7 +90,7 @@
               "hammerjs",
               "camunda-bpmn-moddle/lib",
               "object-refs",
-              "heatmap.js"
+              "heatmap.js-fixed"
             ],
             "vendorChunk": true,
             "extractLicenses": false,

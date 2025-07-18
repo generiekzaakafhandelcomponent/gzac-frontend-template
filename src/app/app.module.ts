@@ -10,9 +10,20 @@ import {TaskModule} from '@valtimo/task';
 import {environment} from '../environments/environment';
 import {SecurityModule} from '@valtimo/security';
 import {
+  BpmnJsDiagramModule,
+  MenuModule,
+  WidgetModule,
+  enableCustomFormioComponents,
+  registerFormioCurrencyComponent,
+  registerFormioFileSelectorComponent,
+  registerFormioUploadComponent,
+  registerFormioValueResolverSelectorComponent
+} from '@valtimo/components';
+import {
   DefaultTabs,
   CaseDetailTabAuditComponent,
-  CaseDetailTabDocumentsComponent, CaseDetailTabNotesComponent,
+  CaseDetailTabDocumentsComponent,
+  CaseDetailTabNotesComponent,
   CaseDetailTabProgressComponent,
   CaseDetailTabSummaryComponent,
   CaseModule,
@@ -20,9 +31,11 @@ import {
 import {ProcessModule} from '@valtimo/process';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
-  BigNumberModule,
   CaseCountDataSourceModule,
+  CaseCountsDataSourceModule,
+  CaseGroupByDataSourceModule,
   DashboardModule,
+  DisplayWidgetTypesModule,
 } from '@valtimo/dashboard';
 import {DocumentModule} from '@valtimo/document';
 import {AccountModule} from '@valtimo/account';
@@ -44,6 +57,8 @@ import {ConfigModule, ConfigService, MultiTranslateHttpLoaderFactory} from '@val
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {FormFlowManagementModule} from '@valtimo/form-flow-management';
 import {PluginManagementModule} from '@valtimo/plugin-management';
+import {ObjectManagementModule} from '@valtimo/object-management';
+import {ObjectModule} from '@valtimo/object';
 import {
   BesluitenApiPluginModule,
   besluitenApiPluginSpecification,
@@ -69,19 +84,19 @@ import {
   NotificatiesApiPluginModule,
   OpenNotificatiesPluginModule,
   portaaltaakPluginSpecification,
-  PortaaltaakPluginModule, VerzoekPluginModule, verzoekPluginSpecification
+  PortaaltaakPluginModule,
+  VerzoekPluginModule,
+  verzoekPluginSpecification
 } from '@valtimo/plugin';
-import {ObjectManagementModule} from '@valtimo/object-management';
-import {ObjectModule} from '@valtimo/object';
 import {AccessControlManagementModule} from '@valtimo/access-control-management';
 import {DashboardManagementModule} from '@valtimo/dashboard-management';
 import {CaseMigrationModule} from '@valtimo/case-migration';
+import {SseModule} from '@valtimo/sse';
 import {
   registerDocumentenApiFormioUploadComponent,
   ZgwModule
 } from '@valtimo/zgw';
 import {LoggingModule} from '@valtimo/logging';
-import { SseModule } from '@valtimo/sse';
 
 export function tabsFactory() {
   return new Map<string, object>([
@@ -95,7 +110,7 @@ export function tabsFactory() {
 
 @NgModule({
   declarations: [
-      AppComponent
+    AppComponent
   ],
   bootstrap: [AppComponent],
   imports: [
@@ -150,8 +165,11 @@ export function tabsFactory() {
     OpenNotificatiesPluginModule,
     PortaaltaakPluginModule,
     VerzoekPluginModule,
-    BigNumberModule,
+    DisplayWidgetTypesModule,
     CaseCountDataSourceModule,
+    CaseCountsDataSourceModule,
+    CaseGroupByDataSourceModule,
+    DashboardModule,
     AccessControlManagementModule,
     TranslateModule.forRoot({
       loader: {
@@ -189,8 +207,11 @@ export function tabsFactory() {
 })
 export class AppModule {
   constructor(injector: Injector) {
+    enableCustomFormioComponents(injector)
+    registerFormioCurrencyComponent(injector);
     registerFormioUploadComponent(injector);
     registerFormioFileSelectorComponent(injector);
     registerDocumentenApiFormioUploadComponent(injector);
+    registerFormioValueResolverSelectorComponent(injector);
   }
 }

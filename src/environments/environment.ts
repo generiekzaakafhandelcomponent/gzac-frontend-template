@@ -5,18 +5,19 @@ import {NgxLoggerLevel} from 'ngx-logger';
 import {ROLE_ADMIN, ROLE_DEVELOPER, ROLE_USER, ValtimoConfig, UploadProvider, IncludeFunction} from '@valtimo/shared';
 import {authenticationKeycloak} from './auth/keycloak-config';
 import {defaultDefinitionColumns} from './columns';
-import {LOGO_BASE_64} from './logo';
+import {DARK_MODE_LOGO_BASE_64, LOGO_BASE_64} from './logo';
 
 export const environment: ValtimoConfig = {
   logoSvgBase64: LOGO_BASE_64,
+  darkModeLogoSvgBase64: DARK_MODE_LOGO_BASE_64,
   production: false,
   authentication: authenticationKeycloak,
   menu: {
     menuItems: [
       {roles: [ROLE_USER], link: ['/'], title: 'Dashboard', iconClass: 'icon mdi mdi-view-dashboard', sequence: 0},
       {roles: [ROLE_USER], title: 'Cases', iconClass: 'icon mdi mdi-layers', sequence: 1, children: []},
-      {roles: [ROLE_USER], title: 'Objects', iconClass: 'icon mdi mdi-archive', sequence: 2, includeFunction: IncludeFunction.ObjectManagementEnabled},
-      {roles: [ROLE_USER], link: ['/tasks'], title: 'Tasks', iconClass: 'icon mdi mdi-check-all', sequence: 3},
+      {roles: [ROLE_USER], link: ['/tasks'], title: 'Tasks', iconClass: 'icon mdi mdi-check-all', sequence: 2},
+      {roles: [ROLE_ADMIN], title: 'Objects', iconClass: 'icon mdi mdi-archive', sequence: 3, includeFunction: IncludeFunction.ObjectManagementEnabled},
       {roles: [ROLE_USER], link: ['/analysis'], title: 'Analysis', iconClass: 'icon mdi mdi-chart-bar', sequence: 4},
       {
         roles: [ROLE_ADMIN], title: 'Admin', iconClass: 'icon mdi mdi-tune', sequence: 5, children: [
@@ -29,7 +30,6 @@ export const environment: ValtimoConfig = {
           {link: ['/task-management'], title: 'Tasks', sequence: 7},
           {link: ['/object-management'], title: 'Objects', sequence: 8},
           {link: ['/plugins'], title: 'Plugins', sequence: 9},
-          {link: ['/process-links'], title: 'Process links', sequence: 10},
           {link: ['/dashboard-management'], title: 'Dashboard', sequence: 11},
           {link: ['/access-control'], title: 'Access Control', sequence: 12},
           {link: ['/translation-management'], title: 'Translations', sequence: 13},
@@ -66,17 +66,20 @@ export const environment: ValtimoConfig = {
   },
   uploadProvider: UploadProvider.DOCUMENTEN_API,
   defaultDefinitionTable: defaultDefinitionColumns,
-    featureToggles: {
+  featureToggles: {
     showUserNameInTopBar: true,
     disableCaseCount: false,
     experimentalDmnEditing: true,
+    largeLogoMargin: true,
     sortFilesByDate: true,
+    showPlantATreeButton: false,
     returnToLastUrlAfterTokenExpiration: true,
+    enableTabManagement: true,
     allowUserThemeSwitching: true,
     enableCompactModeToggle: true,
     enableUserNameInTopBarToggle: true,
     enableIntermediateSave: true
-}
+  }
 };
 
 /*

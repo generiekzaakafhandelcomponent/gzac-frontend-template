@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
@@ -10,17 +9,23 @@
     "moduleResolution": "bundler",
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "ES2022",
+    "esModuleInterop": true,
+    "target": "es2022",
     "typeRoots": [
       "node_modules/@types"
     ],
     "lib": [
-      "es2020",
+      "es2021",
       "dom"
     ],
-    "useDefineForClassFields": false,
     "skipLibCheck": true
   },
+  "include": [
+    "***.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
   "files": [],
   "references": [
     {
