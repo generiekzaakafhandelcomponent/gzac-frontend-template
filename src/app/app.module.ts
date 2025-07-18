@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {Injector, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {HttpBackend, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
+import { HttpBackend, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LayoutModule, TranslationManagementModule} from '@valtimo/layout';
@@ -89,7 +89,6 @@ import {
 } from '@valtimo/plugin';
 import {AccessControlManagementModule} from '@valtimo/access-control-management';
 import {DashboardManagementModule} from '@valtimo/dashboard-management';
-import {TaskManagementModule} from '@valtimo/task-management';
 import {CaseMigrationModule} from '@valtimo/case-migration';
 import {SseModule} from '@valtimo/sse';
 import {
@@ -112,6 +111,7 @@ export function tabsFactory() {
   declarations: [
     AppComponent
   ],
+  bootstrap: [AppComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -175,16 +175,14 @@ export function tabsFactory() {
         provide: TranslateLoader,
         useFactory: MultiTranslateHttpLoaderFactory,
         deps: [HttpBackend, ConfigService]
-      }
+      },
     }),
     TranslationManagementModule,
-    TaskManagementModule,
-    SseModule,
     ZgwModule,
-    LoggingModule
+    LoggingModule,
+    SseModule
   ],
   providers: [
-    provideHttpClient(withInterceptorsFromDi()),
     {
       provide: PLUGINS_TOKEN,
       useValue: [
@@ -202,8 +200,9 @@ export function tabsFactory() {
         portaaltaakPluginSpecification,
         verzoekPluginSpecification
       ]
-    }],
-  bootstrap: [AppComponent]
+    },
+    provideHttpClient(withInterceptorsFromDi())
+  ]
 })
 export class AppModule {
   constructor(injector: Injector) {
