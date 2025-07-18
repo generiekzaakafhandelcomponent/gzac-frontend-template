@@ -29,6 +29,8 @@
     "@valtimo/account": "13.0.0",
     "@valtimo/analyse": "13.0.0",
     "@valtimo/bootstrap": "13.0.0",
+    "@valtimo/case": "13.0.0",
+    "@valtimo/case-management": "13.0.0",
     "@valtimo/case-migration": "13.0.0",
     "@valtimo/choice-field": "13.0.0",
     "@valtimo/components": "13.0.0",
@@ -53,6 +55,8 @@
     "@valtimo/process-management": "13.0.0",
     "@valtimo/resource": "13.0.0",
     "@valtimo/security": "13.0.0",
+    "@valtimo/shared": "13.0.0",
+    "@valtimo/sse": "13.0.0",
     "@valtimo/swagger": "13.0.0",
     "@valtimo/task": "13.0.0",
     "@valtimo/task-management": "13.0.0",
@@ -80,10 +84,6 @@
     "diagram-js": "15.3.0",
     "@ngx-translate/core": "16.0.4",
     "@ngx-translate/http-loader": "16.0.1",
-    "@valtimo/sse": "13.0.0",
-    "@valtimo/shared": "13.0.0",
-    "@valtimo/case": "13.0.0",
-    "@valtimo/case-management": "13.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.2.9",
