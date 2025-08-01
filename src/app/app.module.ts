@@ -11,24 +11,31 @@ import {SecurityModule} from '@valtimo/security';
 import {
   BpmnJsDiagramModule,
   CardModule,
-  MenuModule, registerFormioFileSelectorComponent,
+  enableCustomFormioComponents,
+  MenuModule,
+  registerFormioCurrencyComponent,
+  registerFormioFileSelectorComponent,
   registerFormioUploadComponent,
+  registerFormioValueResolverSelectorComponent,
   WidgetModule
 } from '@valtimo/components';
 import {
   DefaultTabs,
   DossierDetailTabAuditComponent,
-  DossierDetailTabDocumentsComponent, DossierDetailTabNotesComponent,
+  DossierDetailTabDocumentsComponent,
+  DossierDetailTabNotesComponent,
   DossierDetailTabProgressComponent,
   DossierDetailTabSummaryComponent,
-  DossierModule,
+  DossierModule
 } from '@valtimo/dossier';
 import {ProcessModule} from '@valtimo/process';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
-  BigNumberModule,
   CaseCountDataSourceModule,
+  CaseCountsDataSourceModule,
+  CaseGroupByDataSourceModule,
   DashboardModule,
+  DisplayWidgetTypesModule,
 } from '@valtimo/dashboard';
 import {DocumentModule} from '@valtimo/document';
 import {AccountModule} from '@valtimo/account';
@@ -53,29 +60,31 @@ import {PluginManagementModule} from '@valtimo/plugin-management';
 import {
   BesluitenApiPluginModule,
   besluitenApiPluginSpecification,
+  CatalogiApiPluginModule,
+  catalogiApiPluginSpecification,
   DocumentenApiPluginModule,
   documentenApiPluginSpecification,
+  NotificatiesApiPluginModule,
+  notificatiesApiPluginSpecification,
+  ObjectenApiPluginModule,
+  objectenApiPluginSpecification,
+  ObjectTokenAuthenticationPluginModule,
+  objectTokenAuthenticationPluginSpecification,
+  ObjecttypenApiPluginModule,
+  objecttypenApiPluginSpecification,
+  OpenNotificatiesPluginModule,
+  openNotificatiesPluginSpecification,
   OpenZaakPluginModule,
   openZaakPluginSpecification,
   PLUGINS_TOKEN,
+  PortaaltaakPluginModule,
+  portaaltaakPluginSpecification,
   SmartDocumentsPluginModule,
   smartDocumentsPluginSpecification,
+  VerzoekPluginModule,
+  verzoekPluginSpecification,
   ZakenApiPluginModule,
-  zakenApiPluginSpecification,
-  ObjectenApiPluginModule,
-  objectenApiPluginSpecification,
-  ObjecttypenApiPluginModule,
-  objecttypenApiPluginSpecification,
-  ObjectTokenAuthenticationPluginModule,
-  objectTokenAuthenticationPluginSpecification,
-  catalogiApiPluginSpecification,
-  CatalogiApiPluginModule,
-  notificatiesApiPluginSpecification,
-  openNotificatiesPluginSpecification,
-  NotificatiesApiPluginModule,
-  OpenNotificatiesPluginModule,
-  portaaltaakPluginSpecification,
-  PortaaltaakPluginModule, VerzoekPluginModule, verzoekPluginSpecification
+  zakenApiPluginSpecification
 } from '@valtimo/plugin';
 import {ObjectManagementModule} from '@valtimo/object-management';
 import {ObjectModule} from '@valtimo/object';
@@ -157,8 +166,11 @@ export function tabsFactory() {
     OpenNotificatiesPluginModule,
     PortaaltaakPluginModule,
     VerzoekPluginModule,
-    BigNumberModule,
+    DisplayWidgetTypesModule,
     CaseCountDataSourceModule,
+    CaseCountsDataSourceModule,
+    CaseGroupByDataSourceModule,
+    DashboardModule,
     AccessControlManagementModule,
     HttpClientModule,
     TranslateModule.forRoot({
@@ -195,8 +207,11 @@ export function tabsFactory() {
 })
 export class AppModule {
   constructor(injector: Injector) {
+    enableCustomFormioComponents(injector)
+    registerFormioCurrencyComponent(injector);
     registerFormioUploadComponent(injector);
     registerFormioFileSelectorComponent(injector);
     registerDocumentenApiFormioUploadComponent(injector);
+    registerFormioValueResolverSelectorComponent(injector);
   }
 }
