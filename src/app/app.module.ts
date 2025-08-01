@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {Injector, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import { HttpBackend, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {HttpBackend, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LayoutModule, TranslationManagementModule} from '@valtimo/layout';
@@ -10,13 +10,13 @@ import {environment} from '../environments/environment';
 import {SecurityModule} from '@valtimo/security';
 import {
   BpmnJsDiagramModule,
-  MenuModule,
-  WidgetModule,
   enableCustomFormioComponents,
+  MenuModule,
   registerFormioCurrencyComponent,
   registerFormioFileSelectorComponent,
   registerFormioUploadComponent,
-  registerFormioValueResolverSelectorComponent
+  registerFormioValueResolverSelectorComponent,
+  WidgetModule
 } from '@valtimo/components';
 import {
   DefaultTabs,
@@ -56,8 +56,6 @@ import {ConfigModule, ConfigService, MultiTranslateHttpLoaderFactory} from '@val
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {FormFlowManagementModule} from '@valtimo/form-flow-management';
 import {PluginManagementModule} from '@valtimo/plugin-management';
-import {ObjectManagementModule} from '@valtimo/object-management';
-import {ObjectModule} from '@valtimo/object';
 import {
   BesluitenApiPluginModule,
   besluitenApiPluginSpecification,
@@ -87,15 +85,17 @@ import {
   VerzoekPluginModule,
   verzoekPluginSpecification
 } from '@valtimo/plugin';
+import {ObjectManagementModule} from '@valtimo/object-management';
+import {ObjectModule} from '@valtimo/object';
 import {AccessControlManagementModule} from '@valtimo/access-control-management';
 import {DashboardManagementModule} from '@valtimo/dashboard-management';
 import {CaseMigrationModule} from '@valtimo/case-migration';
+import {LoggingModule} from '@valtimo/logging';
 import {SseModule} from '@valtimo/sse';
 import {
   registerDocumentenApiFormioUploadComponent,
   ZgwModule
 } from '@valtimo/zgw';
-import {LoggingModule} from '@valtimo/logging';
 
 export function tabsFactory() {
   return new Map<string, object>([
@@ -103,7 +103,7 @@ export function tabsFactory() {
     [DefaultTabs.progress, CaseDetailTabProgressComponent],
     [DefaultTabs.audit, CaseDetailTabAuditComponent],
     [DefaultTabs.documents, CaseDetailTabDocumentsComponent],
-    [DefaultTabs.notes, CaseDetailTabNotesComponent],
+    [DefaultTabs.notes, CaseDetailTabNotesComponent]
   ]);
 }
 
@@ -175,12 +175,12 @@ export function tabsFactory() {
         provide: TranslateLoader,
         useFactory: MultiTranslateHttpLoaderFactory,
         deps: [HttpBackend, ConfigService]
-      },
+      }
     }),
     TranslationManagementModule,
     ZgwModule,
     LoggingModule,
-    SseModule
+    SseModule,
   ],
   providers: [
     {
