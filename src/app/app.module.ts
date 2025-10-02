@@ -96,6 +96,13 @@ import {
   registerDocumentenApiFormioUploadComponent,
   ZgwModule
 } from '@valtimo/zgw';
+import {SmtpMailPluginModule, smtpmailPluginSpecification} from "@valtimo-plugins/smtpmail";
+import {
+  MailTemplatePluginModule,
+  mailTemplatePluginSpecification,
+  TextTemplatePluginModule,
+  textTemplatePluginSpecification
+} from '@valtimo-plugins/freemarker';
 
 export function tabsFactory() {
   return new Map<string, object>([
@@ -181,6 +188,9 @@ export function tabsFactory() {
     ZgwModule,
     LoggingModule,
     SseModule,
+    SmtpMailPluginModule,
+    MailTemplatePluginModule,
+    TextTemplatePluginModule
   ],
   providers: [
     {
@@ -198,7 +208,10 @@ export function tabsFactory() {
         notificatiesApiPluginSpecification,
         openNotificatiesPluginSpecification,
         portaaltaakPluginSpecification,
-        verzoekPluginSpecification
+        verzoekPluginSpecification,
+        smtpmailPluginSpecification,
+        mailTemplatePluginSpecification,
+        textTemplatePluginSpecification
       ]
     },
     provideHttpClient(withInterceptorsFromDi())
