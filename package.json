@@ -61,7 +61,7 @@
     "@valtimo/task": "13.3.0",
     "@valtimo/task-management": "13.3.0",
     "@valtimo/zgw": "13.3.0",
-    "@valtimo-plugins/freemarker": "7.0.2",
+    "@valtimo-plugins/freemarker": "8.0.0",
     "@valtimo-plugins/smtpmail": "2.0.1",
     "@webcomponents/custom-elements": "1.6.0",
     "bpmn-js-properties-panel": "5.35.0",

@@ -98,6 +98,8 @@ import {
 } from '@valtimo/zgw';
 import {SmtpMailPluginModule, smtpmailPluginSpecification} from "@valtimo-plugins/smtpmail";
 import {
+  DocumentGeneratorPluginModule,
+  documentGeneratorPluginSpecification,
   MailTemplatePluginModule,
   mailTemplatePluginSpecification,
   TextTemplatePluginModule,
@@ -120,6 +122,7 @@ export function tabsFactory() {
   ],
   bootstrap: [AppComponent],
   imports: [
+    DocumentGeneratorPluginModule,
     CommonModule,
     BrowserModule,
     AppRoutingModule,
@@ -196,6 +199,7 @@ export function tabsFactory() {
     {
       provide: PLUGINS_TOKEN,
       useValue: [
+        documentGeneratorPluginSpecification,
         openZaakPluginSpecification,
         smartDocumentsPluginSpecification,
         besluitenApiPluginSpecification,
