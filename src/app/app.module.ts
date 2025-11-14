@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {Injector, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {HttpBackend, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
+import {HttpBackend, HttpClient, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LayoutModule, TranslationManagementModule} from '@valtimo/layout';
@@ -19,23 +19,17 @@ import {
   WidgetModule
 } from '@valtimo/components';
 import {
-  DefaultTabs,
   CaseDetailTabAuditComponent,
   CaseDetailTabDocumentsComponent,
   CaseDetailTabNotesComponent,
   CaseDetailTabProgressComponent,
   CaseDetailTabSummaryComponent,
   CaseModule,
+  DefaultTabs
 } from '@valtimo/case';
 import {ProcessModule} from '@valtimo/process';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {
-  CaseCountDataSourceModule,
-  CaseCountsDataSourceModule,
-  CaseGroupByDataSourceModule,
-  DashboardModule,
-  DisplayWidgetTypesModule,
-} from '@valtimo/dashboard';
+import {DashboardModule} from '@valtimo/dashboard';
 import {DocumentModule} from '@valtimo/document';
 import {AccountModule} from '@valtimo/account';
 import {ChoiceFieldModule} from '@valtimo/choice-field';
@@ -52,50 +46,48 @@ import {ProcessLinkModule} from '@valtimo/process-link';
 import {MigrationModule} from '@valtimo/migration';
 import {CaseManagementModule} from '@valtimo/case-management';
 import {BootstrapModule} from '@valtimo/bootstrap';
-import {ConfigModule, ConfigService, MultiTranslateHttpLoaderFactory} from '@valtimo/shared';
+import {ConfigModule, ConfigService, CustomMultiTranslateHttpLoaderFactory, LocalizationService} from '@valtimo/shared';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {FormFlowManagementModule} from '@valtimo/form-flow-management';
 import {PluginManagementModule} from '@valtimo/plugin-management';
 import {
   BesluitenApiPluginModule,
   besluitenApiPluginSpecification,
+  CatalogiApiPluginModule,
+  catalogiApiPluginSpecification,
   DocumentenApiPluginModule,
   documentenApiPluginSpecification,
+  NotificatiesApiPluginModule,
+  notificatiesApiPluginSpecification,
+  ObjectenApiPluginModule,
+  objectenApiPluginSpecification,
+  ObjectTokenAuthenticationPluginModule,
+  objectTokenAuthenticationPluginSpecification,
+  ObjecttypenApiPluginModule,
+  objecttypenApiPluginSpecification,
+  OpenNotificatiesPluginModule,
+  openNotificatiesPluginSpecification,
   OpenZaakPluginModule,
   openZaakPluginSpecification,
   PLUGINS_TOKEN,
+  PortaaltaakPluginModule,
+  portaaltaakPluginSpecification,
   SmartDocumentsPluginModule,
   smartDocumentsPluginSpecification,
-  ZakenApiPluginModule,
-  zakenApiPluginSpecification,
-  ObjectenApiPluginModule,
-  objectenApiPluginSpecification,
-  ObjecttypenApiPluginModule,
-  objecttypenApiPluginSpecification,
-  ObjectTokenAuthenticationPluginModule,
-  objectTokenAuthenticationPluginSpecification,
-  catalogiApiPluginSpecification,
-  CatalogiApiPluginModule,
-  notificatiesApiPluginSpecification,
-  openNotificatiesPluginSpecification,
-  NotificatiesApiPluginModule,
-  OpenNotificatiesPluginModule,
-  portaaltaakPluginSpecification,
-  PortaaltaakPluginModule,
   VerzoekPluginModule,
-  verzoekPluginSpecification
+  verzoekPluginSpecification,
+  ZakenApiPluginModule,
+  zakenApiPluginSpecification
 } from '@valtimo/plugin';
 import {ObjectManagementModule} from '@valtimo/object-management';
 import {ObjectModule} from '@valtimo/object';
 import {AccessControlManagementModule} from '@valtimo/access-control-management';
 import {DashboardManagementModule} from '@valtimo/dashboard-management';
 import {CaseMigrationModule} from '@valtimo/case-migration';
-import {LoggingModule} from '@valtimo/logging';
+import {registerDocumentenApiFormioUploadComponent, ZgwModule} from '@valtimo/zgw';
 import {SseModule} from '@valtimo/sse';
-import {
-  registerDocumentenApiFormioUploadComponent,
-  ZgwModule
-} from '@valtimo/zgw';
+import {LoggingModule} from '@valtimo/logging';
+
 import {SmtpMailPluginModule, smtpmailPluginSpecification} from "@valtimo-plugins/smtpmail";
 import {
   DocumentGeneratorPluginModule,
@@ -122,100 +114,95 @@ export function tabsFactory() {
   ],
   bootstrap: [AppComponent],
   imports: [
-    DocumentGeneratorPluginModule,
-    CommonModule,
-    BrowserModule,
+    AccessControlManagementModule,
+    AccountModule,
+    AnalyseModule,
     AppRoutingModule,
-    LayoutModule,
-    WidgetModule,
+    BesluitenApiPluginModule,
     BootstrapModule,
-    ConfigModule.forRoot(environment),
-    LoggerModule.forRoot(environment.logger),
-    environment.authentication.module,
-    SecurityModule,
-    MenuModule,
-    TaskModule,
+    BpmnJsDiagramModule,
+    BrowserModule,
+    CaseManagementModule,
     CaseMigrationModule,
     CaseModule.forRoot(tabsFactory),
-    ProcessModule,
-    BpmnJsDiagramModule,
-    FormsModule,
-    ReactiveFormsModule,
-    DashboardModule,
-    DashboardManagementModule,
-    DocumentModule,
-    AccountModule,
+    CatalogiApiPluginModule,
     ChoiceFieldModule,
-    ResourceModule,
-    FormModule,
-    AnalyseModule,
-    SwaggerModule,
-    FormFlowManagementModule,
-    ProcessManagementModule,
+    CommonModule,
+    ConfigModule.forRoot(environment),
+    DashboardManagementModule,
+    DashboardModule,
     DecisionModule,
-    MilestoneModule,
-    FormManagementModule,
-    ProcessLinkModule,
-    MigrationModule,
-    CaseManagementModule,
-    PluginManagementModule,
-    OpenZaakPluginModule,
-    SmartDocumentsPluginModule,
-    BesluitenApiPluginModule,
+    DocumentGeneratorPluginModule,
+    DocumentModule,
     DocumentenApiPluginModule,
-    ZakenApiPluginModule,
+    FormFlowManagementModule,
+    FormManagementModule,
+    FormModule,
+    FormsModule,
+    LayoutModule,
+    LoggerModule.forRoot(environment.logger),
+    LoggingModule,
+    MailTemplatePluginModule,
+    MenuModule,
+    MigrationModule,
+    MilestoneModule,
+    NotificatiesApiPluginModule,
+    ObjectManagementModule,
+    ObjectModule,
+    ObjectTokenAuthenticationPluginModule,
     ObjectenApiPluginModule,
     ObjecttypenApiPluginModule,
-    ObjectTokenAuthenticationPluginModule,
-    ObjectModule,
-    ObjectManagementModule,
-    CatalogiApiPluginModule,
-    NotificatiesApiPluginModule,
     OpenNotificatiesPluginModule,
+    OpenZaakPluginModule,
+    PluginManagementModule,
     PortaaltaakPluginModule,
+    ProcessLinkModule,
+    ProcessManagementModule,
+    ProcessModule,
+    ReactiveFormsModule,
+    ResourceModule,
+    SecurityModule,
+    SmartDocumentsPluginModule,
+    SmtpMailPluginModule,
+    SseModule,
+    SwaggerModule,
+    TaskModule,
+    TextTemplatePluginModule,
+    TranslationManagementModule,
     VerzoekPluginModule,
-    DisplayWidgetTypesModule,
-    CaseCountDataSourceModule,
-    CaseCountsDataSourceModule,
-    CaseGroupByDataSourceModule,
-    DashboardModule,
-    AccessControlManagementModule,
+    WidgetModule,
+    ZakenApiPluginModule,
+    ZgwModule,
+    environment.authentication.module,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: MultiTranslateHttpLoaderFactory,
-        deps: [HttpBackend, ConfigService]
+        useFactory: CustomMultiTranslateHttpLoaderFactory,
+        deps: [HttpBackend, HttpClient, ConfigService, LocalizationService]
       }
     }),
-    TranslationManagementModule,
-    ZgwModule,
-    LoggingModule,
-    SseModule,
-    SmtpMailPluginModule,
-    MailTemplatePluginModule,
-    TextTemplatePluginModule
   ],
   providers: [
     {
       provide: PLUGINS_TOKEN,
       useValue: [
-        documentGeneratorPluginSpecification,
-        openZaakPluginSpecification,
-        smartDocumentsPluginSpecification,
         besluitenApiPluginSpecification,
+        catalogiApiPluginSpecification,
+        documentGeneratorPluginSpecification,
         documentenApiPluginSpecification,
-        zakenApiPluginSpecification,
+        mailTemplatePluginSpecification,
+        notificatiesApiPluginSpecification,
+        objectTokenAuthenticationPluginSpecification,
         objectenApiPluginSpecification,
         objecttypenApiPluginSpecification,
-        objectTokenAuthenticationPluginSpecification,
-        catalogiApiPluginSpecification,
-        notificatiesApiPluginSpecification,
         openNotificatiesPluginSpecification,
+        openZaakPluginSpecification,
         portaaltaakPluginSpecification,
-        verzoekPluginSpecification,
+        smartDocumentsPluginSpecification,
         smtpmailPluginSpecification,
-        mailTemplatePluginSpecification,
-        textTemplatePluginSpecification
+        textTemplatePluginSpecification,
+        verzoekPluginSpecification,
+        zakenApiPluginSpecification
       ]
     },
     provideHttpClient(withInterceptorsFromDi())
@@ -223,7 +210,7 @@ export function tabsFactory() {
 })
 export class AppModule {
   constructor(injector: Injector) {
-    enableCustomFormioComponents(injector)
+    enableCustomFormioComponents(injector);
     registerFormioCurrencyComponent(injector);
     registerFormioUploadComponent(injector);
     registerFormioFileSelectorComponent(injector);

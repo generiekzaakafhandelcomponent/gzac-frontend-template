@@ -3,14 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 import {NgxLoggerLevel} from 'ngx-logger';
 import {
+  CaseListTab,
+  IncludeFunction,
   ROLE_ADMIN,
   ROLE_DEVELOPER,
   ROLE_USER,
-  ValtimoConfig,
-  UploadProvider,
-  IncludeFunction,
   TaskListTab,
-  CaseListTab
+  UploadProvider,
+  ValtimoConfig
 } from '@valtimo/shared';
 import {authenticationKeycloak} from './auth/keycloak-config';
 import {defaultDefinitionColumns} from './columns';
@@ -25,8 +25,8 @@ export const environment: ValtimoConfig = {
     menuItems: [
       {roles: [ROLE_USER], link: ['/'], title: 'Dashboard', iconClass: 'icon mdi mdi-view-dashboard', sequence: 0},
       {roles: [ROLE_USER], title: 'Cases', iconClass: 'icon mdi mdi-layers', sequence: 1, children: []},
-      {roles: [ROLE_USER], link: ['/tasks'], title: 'Tasks', iconClass: 'icon mdi mdi-check-all', sequence: 2},
-      {roles: [ROLE_USER], title: 'Objects', iconClass: 'icon mdi mdi-archive', sequence: 3, includeFunction: IncludeFunction.ObjectManagementEnabled},
+      {roles: [ROLE_USER], title: 'Objects', iconClass: 'icon mdi mdi-archive', sequence: 2, includeFunction: IncludeFunction.ObjectManagementEnabled},
+      {roles: [ROLE_USER], link: ['/tasks'], title: 'Tasks', iconClass: 'icon mdi mdi-check-all', sequence: 3},
       {roles: [ROLE_USER], link: ['/analysis'], title: 'Analysis', iconClass: 'icon mdi mdi-chart-bar', sequence: 4},
       {
         roles: [ROLE_ADMIN], title: 'Admin', iconClass: 'icon mdi mdi-tune', sequence: 5, children: [
@@ -38,11 +38,7 @@ export const environment: ValtimoConfig = {
           {link: ['/translation-management'], title: 'Translations', sequence: 6},
           {link: ['/choice-fields'], title: 'Choice fields', sequence: 7},
 
-          {
-            title: 'Object management',
-            textClass: 'text-dark font-weight-bold c-default',
-            sequence: 8,
-          },
+          {title: 'Object management', textClass: 'text-dark font-weight-bold c-default', sequence: 8},
           {link: ['/object-management'], title: 'Objects', sequence: 9},
           {link: ['/form-management'], title: 'Forms', sequence: 10},
           {
@@ -51,11 +47,7 @@ export const environment: ValtimoConfig = {
             sequence: 11,
           },
 
-          {
-            title: 'System processes',
-            textClass: 'text-dark font-weight-bold c-default',
-            sequence: 12,
-          },
+          {title: 'System processes', textClass: 'text-dark font-weight-bold c-default', sequence: 12},
           {link: ['/processes'], title: 'Processes', sequence: 13},
           {link: ['/decision-tables'], title: 'Decision tables', sequence: 14},
 
@@ -94,18 +86,19 @@ export const environment: ValtimoConfig = {
   visibleTaskListTabs: [TaskListTab.MINE, TaskListTab.OPEN, TaskListTab.ALL],
   visibleCaseListTabs: [CaseListTab.ALL, CaseListTab.MINE, CaseListTab.OPEN],
   featureToggles: {
-    showUserNameInTopBar: true,
+    allowUserThemeSwitching: true,
     disableCaseCount: false,
+    enableCompactModeToggle: true,
+    enableFormFlowBreadcrumbs: true,
+    enableIntermediateSave: true,
+    enableTabManagement: true,
+    enableUserNameInTopBarToggle: true,
     experimentalDmnEditing: true,
     largeLogoMargin: true,
-    sortFilesByDate: true,
-    showPlantATreeButton: false,
     returnToLastUrlAfterTokenExpiration: true,
-    enableTabManagement: true,
-    allowUserThemeSwitching: true,
-    enableCompactModeToggle: true,
-    enableUserNameInTopBarToggle: true,
-    enableIntermediateSave: true
+    showPlantATreeButton: false,
+    showUserNameInTopBar: true,
+    sortFilesByDate: true
   }
 };
 
