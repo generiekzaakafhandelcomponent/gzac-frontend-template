@@ -30,6 +30,7 @@ import {
 } from '@valtimo/case';
 import {ProcessModule} from '@valtimo/process';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {IkoModule} from '@valtimo/iko';
 import {DashboardModule} from '@valtimo/dashboard';
 import {DocumentModule} from '@valtimo/document';
 import {AccountModule} from '@valtimo/account';
@@ -141,6 +142,7 @@ export function tabsFactory() {
     FormManagementModule,
     FormModule,
     FormsModule,
+    IkoModule,
     LayoutModule,
     LoggerModule.forRoot(environment.logger),
     LoggingModule,
