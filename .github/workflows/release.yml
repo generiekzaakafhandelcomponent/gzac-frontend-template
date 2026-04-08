@@ -6,8 +6,12 @@ on:
       version:
         description: 'The version to be released'
         required: true
+  repository_dispatch:
+    types: [release]
 
 env:
+  VERSION: ${{ inputs.version || github.event.client_payload.version }}
+
   DOCKER_REPO: ritense/gzac-frontend
 
 jobs:
@@ -19,7 +23,7 @@ jobs:
 
       - name: Upgrade version
         run: |
-          sed -r -i 's/"@valtimo\/([a-z0-9_-]+)".+/"@valtimo\/\1": "${{ inputs.version }}",/' package.json
+          sed -r -i 's/"@valtimo\/([a-z0-9_-]+)".+/"@valtimo\/\1": "${{ env.VERSION }}",/' package.json
 
       - name: Set up Node.js 20
         uses: actions/setup-node@v4
@@ -33,7 +37,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git commit -am "Upgrade to ${{ inputs.version }}"
+          git commit -am "Upgrade to ${{ env.VERSION }}"
           git push
 
       - name: Build application
@@ -49,5 +53,5 @@ jobs:
 
       - name: Build and push image
         run: |
-          docker build -t ${{ env.DOCKER_REPO }}:${{ inputs.version }} .
-          docker push ${{ env.DOCKER_REPO }}:${{ inputs.version }}
+          docker build -t ${{ env.DOCKER_REPO }}:${{ env.VERSION }} .
+          docker push ${{ env.DOCKER_REPO }}:${{ env.VERSION }}
