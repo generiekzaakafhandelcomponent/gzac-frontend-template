@@ -9,6 +9,7 @@ import {TaskModule} from '@valtimo/task';
 import {environment} from '../environments/environment';
 import {SecurityModule} from '@valtimo/security';
 import {BuildingBlockManagementModule} from '@valtimo/building-block-management';
+import {TeamsModule} from '@valtimo/teams';
 import {
   BpmnJsDiagramModule,
   enableCustomFormioComponents,
@@ -90,7 +91,7 @@ import {registerDocumentenApiFormioUploadComponent, ZgwModule} from '@valtimo/zg
 import {SseModule} from '@valtimo/sse';
 import {LoggingModule} from '@valtimo/logging';
 
-import {SmtpMailPluginModule, smtpmailPluginSpecification} from "@valtimo-plugins/smtpmail";
+import {SmtpMailPluginModule, smtpmailPluginSpecification} from '@valtimo-plugins/smtpmail';
 import {
   DocumentGeneratorPluginModule,
   documentGeneratorPluginSpecification,
@@ -171,6 +172,7 @@ export function tabsFactory() {
     SseModule,
     SwaggerModule,
     TaskModule,
+    TeamsModule,
     TextTemplatePluginModule,
     TranslationManagementModule,
     VerzoekPluginModule,
