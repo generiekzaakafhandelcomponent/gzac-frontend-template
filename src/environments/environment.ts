@@ -83,6 +83,7 @@ export const environment: ValtimoConfig = {
   defaultDefinitionTable: defaultDefinitionColumns,
   visibleTaskListTabs: [TaskListTab.MINE, TaskListTab.OPEN, TaskListTab.ALL],
   visibleCaseListTabs: [CaseListTab.ALL, CaseListTab.MINE, CaseListTab.OPEN],
+  caseFileSizeUploadLimitMB: window['env']['caseFileSizeUploadLimitMB'] || 5,
   featureToggles: {
     enableObjectManagement: window['env']['featureToggles']?.['enableObjectManagement'] !== 'false',
     allowUserThemeSwitching: true,
