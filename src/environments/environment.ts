@@ -84,6 +84,7 @@ export const environment: ValtimoConfig = {
   visibleTaskListTabs: [TaskListTab.MINE, TaskListTab.OPEN, TaskListTab.ALL],
   visibleCaseListTabs: [CaseListTab.ALL, CaseListTab.MINE, CaseListTab.OPEN],
   featureToggles: {
+    enableObjectManagement: window['env']['featureToggles']?.['enableObjectManagement'] !== 'false',
     allowUserThemeSwitching: true,
     disableCaseCount: false,
     enableCompactModeToggle: true,
