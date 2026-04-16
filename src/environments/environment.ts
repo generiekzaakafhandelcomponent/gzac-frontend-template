@@ -85,7 +85,7 @@ export const environment: ValtimoConfig = {
   visibleCaseListTabs: [CaseListTab.ALL, CaseListTab.MINE, CaseListTab.OPEN],
   caseFileSizeUploadLimitMB: window['env']['caseFileSizeUploadLimitMB'] || 5,
   featureToggles: {
-    enableObjectManagement: window['env']['featureToggles']?.['enableObjectManagement'] !== 'false',
+    enableObjectManagement: window['env']['featureToggles']?.['enableObjectManagement'] === 'true',
     allowUserThemeSwitching: true,
     disableCaseCount: false,
     enableCompactModeToggle: true,
