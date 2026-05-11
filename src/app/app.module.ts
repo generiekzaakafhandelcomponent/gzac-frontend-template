@@ -12,13 +12,15 @@ import {BuildingBlockManagementModule} from '@valtimo/building-block-management'
 import {TeamsModule} from '@valtimo/teams';
 import {
   BpmnJsDiagramModule,
-  enableCustomFormioComponents,
   MenuModule,
+  WidgetModule,
+  enableCustomFormioComponents,
   registerFormioCurrencyComponent,
+  registerFormioCurrentUserComponent,
   registerFormioFileSelectorComponent,
+  registerFormioIbanComponent,
   registerFormioUploadComponent,
   registerFormioValueResolverSelectorComponent,
-  WidgetModule
 } from '@valtimo/components';
 import {
   CaseDetailTabAuditComponent,
@@ -31,7 +33,7 @@ import {
 } from '@valtimo/case';
 import {ProcessModule} from '@valtimo/process';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {IkoModule} from '@valtimo/iko';
+import {IkoModule, registerIkoSearchFormioComponent} from '@valtimo/iko';
 import {DashboardModule} from '@valtimo/dashboard';
 import {DocumentModule} from '@valtimo/document';
 import {AccountModule} from '@valtimo/account';
@@ -219,8 +221,11 @@ export class AppModule {
     enableCustomFormioComponents(injector);
     registerFormioCurrencyComponent(injector);
     registerFormioUploadComponent(injector);
+    registerFormioCurrentUserComponent(injector);
     registerFormioFileSelectorComponent(injector);
     registerDocumentenApiFormioUploadComponent(injector);
+    registerFormioIbanComponent(injector);
     registerFormioValueResolverSelectorComponent(injector);
+    registerIkoSearchFormioComponent(injector);
   }
 }
