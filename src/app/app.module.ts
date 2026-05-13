@@ -8,6 +8,7 @@ import {LayoutModule, TranslationManagementModule} from '@valtimo/layout';
 import {TaskModule} from '@valtimo/task';
 import {environment} from '../environments/environment';
 import {SecurityModule} from '@valtimo/security';
+import {AdminSettingsModule} from '@valtimo/admin-settings';
 import {BuildingBlockManagementModule} from '@valtimo/building-block-management';
 import {TeamsModule} from '@valtimo/teams';
 import {
@@ -121,6 +122,7 @@ export function tabsFactory() {
   imports: [
     AccessControlManagementModule,
     AccountModule,
+    AdminSettingsModule,
     AnalyseModule,
     AppRoutingModule,
     BesluitenApiPluginModule,
