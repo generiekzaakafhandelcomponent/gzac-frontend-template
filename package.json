@@ -28,7 +28,7 @@
     "@bpmn-io/properties-panel": "3.26.4",
     "@mdi/font": "7.4.47",
     "@valtimo-plugins/freemarker": "8.3.3",
-    "@valtimo-plugins/smtpmail": "2.0.2",
+    "@valtimo-plugins/smtpmail": "2.0.4",
     "@valtimo/access-control": "13.31.0",
     "@valtimo/access-control-management": "13.31.0",
     "@valtimo/account": "13.31.0",
