@@ -50,4 +50,6 @@ gradle.properties
 gradle
 gradlew.bat
 
+# other
 migration
+.env.properties
