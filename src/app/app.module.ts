@@ -105,6 +105,9 @@ import {
   TextTemplatePluginModule,
   textTemplatePluginSpecification
 } from '@valtimo-plugins/freemarker';
+import {ArchiefPluginModule, archiefPluginSpecification} from '@valtimo-plugins/archief';
+import {TokenAuthenticationPluginModule, tokenAuthenticationPluginSpecification} from '@valtimo-plugins/token-authentication';
+import {OpenProductPluginModule, openProductPluginSpecification} from '@valtimo-plugins/open-product';
 
 export function tabsFactory() {
   return new Map<string, object>([
@@ -194,6 +197,10 @@ export function tabsFactory() {
         deps: [HttpBackend, HttpClient, ConfigService, LocalizationService]
       }
     }),
+    //plugins
+    ArchiefPluginModule,
+    TokenAuthenticationPluginModule,
+    OpenProductPluginModule
   ],
   providers: [
     {
@@ -216,7 +223,10 @@ export function tabsFactory() {
         smtpmailPluginSpecification,
         textTemplatePluginSpecification,
         verzoekPluginSpecification,
-        zakenApiPluginSpecification
+        zakenApiPluginSpecification,
+        archiefPluginSpecification,
+        tokenAuthenticationPluginSpecification,
+        openProductPluginSpecification
       ]
     },
     provideHttpClient(withInterceptorsFromDi())
