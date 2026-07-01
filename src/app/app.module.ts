@@ -1,28 +1,42 @@
-import {BrowserModule} from '@angular/platform-browser';
+/*
+ * Copyright 2015-2026 Ritense BV, the Netherlands.
+ *
+ * Licensed under EUPL, Version 1.2 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import {Injector, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {HttpBackend, HttpClient, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {LayoutModule, TranslationManagementModule} from '@valtimo/layout';
-import {TaskModule} from '@valtimo/task';
-import {environment} from '../environments/environment';
-import {SecurityModule} from '@valtimo/security';
-import {AdminSettingsModule} from '@valtimo/admin-settings';
-import {BuildingBlockManagementModule} from '@valtimo/building-block-management';
-import {TeamsModule} from '@valtimo/teams';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
-  BpmnJsDiagramModule,
-  MenuModule,
-  WidgetModule,
-  enableCustomFormioComponents,
-  registerFormioCurrencyComponent,
-  registerFormioCurrentUserComponent,
-  registerFormioFileSelectorComponent,
-  registerFormioIbanComponent,
-  registerFormioUploadComponent,
-  registerFormioValueResolverSelectorComponent,
-} from '@valtimo/components';
+  HttpBackend,
+  HttpClient,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {LoggerModule} from 'ngx-logger';
+
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {environment} from '../environments/environment';
+
+import {AccessControlManagementModule} from '@valtimo/access-control-management';
+import {AccountModule} from '@valtimo/account';
+import {AdminSettingsModule} from '@valtimo/admin-settings';
+import {AnalyseModule} from '@valtimo/analyse';
+import {BootstrapModule} from '@valtimo/bootstrap';
+import {BuildingBlockManagementModule} from '@valtimo/building-block-management';
 import {
   CaseDetailTabAuditComponent,
   CaseDetailTabDocumentsComponent,
@@ -30,32 +44,37 @@ import {
   CaseDetailTabProgressComponent,
   CaseDetailTabSummaryComponent,
   CaseModule,
-  DefaultTabs
+  DefaultTabs,
 } from '@valtimo/case';
-import {ProcessModule} from '@valtimo/process';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {IkoModule, registerIkoSearchFormioComponent} from '@valtimo/iko';
-import {DashboardModule} from '@valtimo/dashboard';
-import {DocumentModule} from '@valtimo/document';
-import {AccountModule} from '@valtimo/account';
-import {ChoiceFieldModule} from '@valtimo/choice-field';
-import {ResourceModule} from '@valtimo/resource';
-import {FormModule} from '@valtimo/form';
-import {SwaggerModule} from '@valtimo/swagger';
-import {AnalyseModule} from '@valtimo/analyse';
-import {ProcessManagementModule} from '@valtimo/process-management';
-import {DecisionModule} from '@valtimo/decision';
-import {MilestoneModule} from '@valtimo/milestone';
-import {LoggerModule} from 'ngx-logger';
-import {FormManagementModule} from '@valtimo/form-management';
-import {ProcessLinkModule} from '@valtimo/process-link';
-import {MigrationModule} from '@valtimo/migration';
 import {CaseManagementModule} from '@valtimo/case-management';
-import {BootstrapModule} from '@valtimo/bootstrap';
-import {ConfigModule, ConfigService, CustomMultiTranslateHttpLoaderFactory, LocalizationService} from '@valtimo/shared';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {CaseMigrationModule} from '@valtimo/case-migration';
+import {ChoiceFieldModule} from '@valtimo/choice-field';
+import {
+  BpmnJsDiagramModule,
+  enableCustomFormioComponents,
+  MenuModule,
+  registerFormioCurrencyComponent,
+  registerFormioCurrentUserComponent,
+  registerFormioFileSelectorComponent,
+  registerFormioIbanComponent,
+  registerFormioUploadComponent,
+  registerFormioValueResolverSelectorComponent,
+  WidgetModule,
+} from '@valtimo/components';
+import {DashboardModule} from '@valtimo/dashboard';
+import {DashboardManagementModule} from '@valtimo/dashboard-management';
+import {DecisionModule} from '@valtimo/decision';
+import {DocumentModule} from '@valtimo/document';
+import {FormModule} from '@valtimo/form';
 import {FormFlowManagementModule} from '@valtimo/form-flow-management';
-import {PluginManagementModule} from '@valtimo/plugin-management';
+import {FormManagementModule} from '@valtimo/form-management';
+import {IkoModule, registerIkoSearchFormioComponent} from '@valtimo/iko';
+import {LayoutModule, TranslationManagementModule} from '@valtimo/layout';
+import {LoggingModule} from '@valtimo/logging';
+import {MigrationModule} from '@valtimo/migration';
+import {MilestoneModule} from '@valtimo/milestone';
+import {ObjectModule} from '@valtimo/object';
+import {ObjectManagementModule} from '@valtimo/object-management';
 import {
   BesluitenApiPluginModule,
   besluitenApiPluginSpecification,
@@ -85,26 +104,27 @@ import {
   VerzoekPluginModule,
   verzoekPluginSpecification,
   ZakenApiPluginModule,
-  zakenApiPluginSpecification
+  zakenApiPluginSpecification,
 } from '@valtimo/plugin';
-import {ObjectManagementModule} from '@valtimo/object-management';
-import {ObjectModule} from '@valtimo/object';
-import {AccessControlManagementModule} from '@valtimo/access-control-management';
-import {DashboardManagementModule} from '@valtimo/dashboard-management';
-import {CaseMigrationModule} from '@valtimo/case-migration';
-import {registerDocumentenApiFormioUploadComponent, ZgwModule} from '@valtimo/zgw';
-import {SseModule} from '@valtimo/sse';
-import {LoggingModule} from '@valtimo/logging';
-
-import {SmtpMailPluginModule, smtpmailPluginSpecification} from '@valtimo-plugins/smtpmail';
+import {PluginManagementModule} from '@valtimo/plugin-management';
+import {ProcessModule} from '@valtimo/process';
+import {ProcessLinkModule} from '@valtimo/process-link';
+import {ProcessManagementModule} from '@valtimo/process-management';
+import {ResourceModule} from '@valtimo/resource';
+import {SecurityModule} from '@valtimo/security';
 import {
-  DocumentGeneratorPluginModule,
-  documentGeneratorPluginSpecification,
-  MailTemplatePluginModule,
-  mailTemplatePluginSpecification,
-  TextTemplatePluginModule,
-  textTemplatePluginSpecification
-} from '@valtimo-plugins/freemarker';
+  ConfigModule,
+  ConfigService,
+  CustomMultiTranslateHttpLoaderFactory,
+  LocalizationService,
+} from '@valtimo/shared';
+import {SseModule} from '@valtimo/sse';
+import {SwaggerModule} from '@valtimo/swagger';
+import {TaskModule} from '@valtimo/task';
+import {TeamsModule} from '@valtimo/teams';
+import {registerDocumentenApiFormioUploadComponent, ZgwModule} from '@valtimo/zgw';
+
+import {pluginImports, pluginSpecifications} from './app-plugins';
 
 export function tabsFactory() {
   return new Map<string, object>([
@@ -112,99 +132,103 @@ export function tabsFactory() {
     [DefaultTabs.progress, CaseDetailTabProgressComponent],
     [DefaultTabs.audit, CaseDetailTabAuditComponent],
     [DefaultTabs.documents, CaseDetailTabDocumentsComponent],
-    [DefaultTabs.notes, CaseDetailTabNotesComponent]
+    [DefaultTabs.notes, CaseDetailTabNotesComponent],
   ]);
 }
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   bootstrap: [AppComponent],
   imports: [
-    AccessControlManagementModule,
-    AccountModule,
-    AdminSettingsModule,
-    AnalyseModule,
-    AppRoutingModule,
-    BesluitenApiPluginModule,
-    BootstrapModule,
-    BpmnJsDiagramModule,
     BrowserModule,
-    BuildingBlockManagementModule,
-    CaseManagementModule,
-    CaseMigrationModule,
-    CaseModule.forRoot(tabsFactory),
-    CatalogiApiPluginModule,
-    ChoiceFieldModule,
     CommonModule,
-    ConfigModule.forRoot(environment),
-    DashboardManagementModule,
-    DashboardModule,
-    DecisionModule,
-    DocumentGeneratorPluginModule,
-    DocumentModule,
-    DocumentenApiPluginModule,
-    DocumentenApiPreviewPluginModule,
-    FormFlowManagementModule,
-    FormManagementModule,
-    FormModule,
+    AppRoutingModule,
     FormsModule,
-    IkoModule,
-    LayoutModule,
-    LoggerModule.forRoot(environment.logger),
-    LoggingModule,
-    MailTemplatePluginModule,
-    MenuModule,
-    MigrationModule,
-    MilestoneModule,
-    NotificatiesApiPluginModule,
-    ObjectManagementModule,
-    ObjectModule,
-    ObjectTokenAuthenticationPluginModule,
-    ObjectenApiPluginModule,
-    ObjecttypenApiPluginModule,
-    OpenNotificatiesPluginModule,
-    OpenZaakPluginModule,
-    PluginManagementModule,
-    PortaaltaakPluginModule,
-    ProcessLinkModule,
-    ProcessManagementModule,
-    ProcessModule,
     ReactiveFormsModule,
-    ResourceModule,
-    SecurityModule,
-    SmartDocumentsPluginModule,
-    SmtpMailPluginModule,
-    SseModule,
-    SwaggerModule,
-    TaskModule,
-    TeamsModule,
-    TextTemplatePluginModule,
-    TranslationManagementModule,
-    VerzoekPluginModule,
-    WidgetModule,
-    ZakenApiPluginModule,
-    ZgwModule,
+    ConfigModule.forRoot(environment),
+    LoggerModule.forRoot(environment.logger),
     environment.authentication.module,
+    CaseModule.forRoot(tabsFactory),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: CustomMultiTranslateHttpLoaderFactory,
-        deps: [HttpBackend, HttpClient, ConfigService, LocalizationService]
-      }
+        deps: [HttpBackend, HttpClient, ConfigService, LocalizationService],
+      },
     }),
+    // layout / shell
+    LayoutModule,
+    BootstrapModule,
+    SecurityModule,
+    MenuModule,
+    WidgetModule,
+    BpmnJsDiagramModule,
+    // task / case / process
+    TaskModule,
+    CaseMigrationModule,
+    CaseManagementModule,
+    ProcessModule,
+    ProcessLinkModule,
+    ProcessManagementModule,
+    // form
+    FormModule,
+    FormManagementModule,
+    FormFlowManagementModule,
+    // dashboard / document / account
+    DashboardModule,
+    DashboardManagementModule,
+    DocumentModule,
+    AccountModule,
+    ChoiceFieldModule,
+    ResourceModule,
+    // analysis / swagger / decision / milestone / migration
+    AnalyseModule,
+    SwaggerModule,
+    DecisionModule,
+    MilestoneModule,
+    MigrationModule,
+    // management
+    PluginManagementModule,
+    ObjectManagementModule,
+    ObjectModule,
+    AccessControlManagementModule,
+    TranslationManagementModule,
+    // zgw / iko / logging
+    ZgwModule,
+    IkoModule,
+    LoggingModule,
+    // admin / building blocks / teams
+    AdminSettingsModule,
+    BuildingBlockManagementModule,
+    TeamsModule,
+    // plugin modules used by every variant
+    BesluitenApiPluginModule,
+    CatalogiApiPluginModule,
+    DocumentenApiPluginModule,
+    DocumentenApiPreviewPluginModule,
+    NotificatiesApiPluginModule,
+    ObjectenApiPluginModule,
+    ObjectTokenAuthenticationPluginModule,
+    ObjecttypenApiPluginModule,
+    OpenNotificatiesPluginModule,
+    OpenZaakPluginModule,
+    PortaaltaakPluginModule,
+    SmartDocumentsPluginModule,
+    ZakenApiPluginModule,
+    VerzoekPluginModule,
+    // gzac-only feature modules
+    SseModule,
+    ...pluginImports,
   ],
   providers: [
+    provideHttpClient(withInterceptorsFromDi()),
     {
       provide: PLUGINS_TOKEN,
       useValue: [
         besluitenApiPluginSpecification,
         catalogiApiPluginSpecification,
-        documentGeneratorPluginSpecification,
         documentenApiPluginSpecification,
         documentenApiPreviewPluginSpecification,
-        mailTemplatePluginSpecification,
         notificatiesApiPluginSpecification,
         objectTokenAuthenticationPluginSpecification,
         objectenApiPluginSpecification,
@@ -213,25 +237,23 @@ export function tabsFactory() {
         openZaakPluginSpecification,
         portaaltaakPluginSpecification,
         smartDocumentsPluginSpecification,
-        smtpmailPluginSpecification,
-        textTemplatePluginSpecification,
         verzoekPluginSpecification,
-        zakenApiPluginSpecification
-      ]
+        zakenApiPluginSpecification,
+        ...pluginSpecifications,
+      ],
     },
-    provideHttpClient(withInterceptorsFromDi())
-  ]
+  ],
 })
 export class AppModule {
   constructor(injector: Injector) {
     enableCustomFormioComponents(injector);
     registerFormioCurrencyComponent(injector);
-    registerFormioUploadComponent(injector);
     registerFormioCurrentUserComponent(injector);
     registerFormioFileSelectorComponent(injector);
-    registerDocumentenApiFormioUploadComponent(injector);
-    registerFormioIbanComponent(injector);
+    registerFormioUploadComponent(injector);
     registerFormioValueResolverSelectorComponent(injector);
+    registerFormioIbanComponent(injector);
+    registerDocumentenApiFormioUploadComponent(injector);
     registerIkoSearchFormioComponent(injector);
   }
 }

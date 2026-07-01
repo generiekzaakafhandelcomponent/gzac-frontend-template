@@ -19,7 +19,7 @@ import {DARK_MODE_LOGO_BASE_64, LOGO_BASE_64} from './logo';
 export const environment: ValtimoConfig = {
   logoSvgBase64: LOGO_BASE_64,
   darkModeLogoSvgBase64: DARK_MODE_LOGO_BASE_64,
-  production: false,
+  production: true,
   authentication: authenticationKeycloak,
   menu: {
     menuItems: [
