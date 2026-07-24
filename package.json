@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config conf/proxy.conf.json",
-    "build": "ng build --output-path=deployment/dist",
+    "build": "ng build --configuration production --output-path=deployment/dist",
     "clean": "npx rimraf@6 dist .angular node_modules package-lock.json",
     "test": "ng test",
     "lint": "ng lint",
