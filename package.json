@@ -27,7 +27,7 @@
     "@bpmn-io/dmn-migrate": "0.5.0",
     "@bpmn-io/properties-panel": "3.26.4",
     "@mdi/font": "7.4.47",
-    "@valtimo-plugins/freemarker": "8.5.2",
+    "@valtimo-plugins/freemarker": "8.5.4",
     "@valtimo-plugins/smtpmail": "2.0.6",
     "@valtimo/access-control": "13.41.0",
     "@valtimo/access-control-management": "13.41.0",
