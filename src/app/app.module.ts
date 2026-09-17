@@ -57,7 +57,6 @@ import {
   registerFormioCurrentUserComponent,
   registerFormioFileSelectorComponent,
   registerFormioIbanComponent,
-  registerFormioMailPreviewComponent,
   registerFormioUploadComponent,
   registerFormioValueResolverSelectorComponent,
   WidgetModule,
@@ -248,14 +247,13 @@ export function tabsFactory() {
 export class AppModule {
   constructor(injector: Injector) {
     enableCustomFormioComponents(injector);
+    registerFormioCurrencyComponent(injector);
     registerFormioCurrentUserComponent(injector);
     registerFormioFileSelectorComponent(injector);
     registerFormioUploadComponent(injector);
     registerFormioValueResolverSelectorComponent(injector);
     registerFormioIbanComponent(injector);
-    registerFormioCurrencyComponent(injector);
     registerDocumentenApiFormioUploadComponent(injector);
     registerIkoSearchFormioComponent(injector);
-    registerFormioMailPreviewComponent(injector);
   }
 }
