@@ -26,12 +26,14 @@ import {
   TextTemplatePluginModule,
   textTemplatePluginSpecification,
 } from '@valtimo-plugins/freemarker';
+import {CloudEventPluginModule, cloudEventPluginSpecification} from '@valtimo-plugins/cloud-event';
 
 export const pluginImports = [
   SmtpMailPluginModule,
   DocumentGeneratorPluginModule,
   MailTemplatePluginModule,
   TextTemplatePluginModule,
+  CloudEventPluginModule
 ];
 
 export const pluginSpecifications = [
@@ -39,4 +41,5 @@ export const pluginSpecifications = [
   documentGeneratorPluginSpecification,
   mailTemplatePluginSpecification,
   textTemplatePluginSpecification,
+  cloudEventPluginSpecification
 ];
